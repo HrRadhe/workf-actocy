@@ -1,0 +1,29 @@
+{% load static %}
+
+<body>
+
+    <!-- header           👎👎👎👎 -->
+   <section>
+    <div class="nav-me">
+      <!-- <input type="checkbox" id="check1">
+      <label for="check" class="checkbtn">
+          <i class="fas fa-bars"></i>
+      </label> -->
+      <a href="{% url 'home' %}"><img  class="logo" src="{% static 'img/Asset 2.png'%}"></a>
+      <ul class="navmenu">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#">about</a></li>
+          <li><a href="#">services</a></li>
+          <li><a href="#">order</a></li>
+          <li><a href="#">contact</a></li>
+          <li><button onclick="login();" class="btn login">Login</button></li>
+          
+
+      </ul>
+
+     
+    
+  </div>
+   </section>
+  <!-- header    end        👎👎👎👎 -->
+
