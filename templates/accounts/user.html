@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+{% include 'includes/alerts.html' %}
+
+<div class="wrapper">
+    <div class="logo">
+        <img src="{% static 'img/mini logo.png' %}" alt="">
+    </div>
+    <div class="text-center mt-4 name">
+        Work Factory
+    </div>
+    <form class="p-3 mt-3" action="{% url 'registerUser' %}" method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-user"></i>
+            {{form.first_name}}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-user"></i>
+            {{form.last_name}}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-user"></i>
+            {{form.username}}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-envelope"></i>
+            {{form.email}}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-phone"></i>
+            {{form.phone_number}}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-eye"></i>
+            {{form.password}}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-eye-slash"></i>
+            {{form.confirm_password}}
+        </div>
+
+        <ul class="errorlist">
+            {% if form.errors %}
+            {% for field in form %}
+               
+
+                <!-- <li>done</li> -->
+                    {% for error in field.errors %}
+                        <li style="color: red;">{{error}}</li>
+                    {% endfor %}
+                
+            {% endfor %}
+            {% endif %}
+
+            <li style="color: red;">{{form.non_field_errors}}</li>
+        </ul>
+        <!-- <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-location"></i>
+            <input type="text"   placeholder="State">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-city"></i>
+            <input type="text"   placeholder="City">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-code"></i>
+            <input type="text"  placeholder="Pin Code">
+        </div>
+
+        <div class="form-field d-flex align-items-center">
+            <i class="fa-solid fa-user"></i>
+            <input type="file"  id="profile_pic" placeholder="Profile Picture">
+        </div> -->
+
+        <button class="btn mt-3">Register</button>
+        <br>
+        <br>
+    </form>
+
+</div>
+
+{% endblock %}

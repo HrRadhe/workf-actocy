@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<section>
+   <div class="container">
+ 
+     <h1  class="heading" style="color: black;">REGISTRATION HERE!</h1>
+ 
+     <div class="box-container">
+ 
+         <div  class="box" style="cursor: pointer; height : 350px;">
+             <a href="{% url 'registerUser' %}" style= "text-decoration: none; color: black;" >
+               <img src="{% static 'img/user.png' %}"   style= " height:250px; width:200px;" alt="USER" >
+             <h2 style="margin-top:0px;">FOR USERS</h2>
+             </a>
+             
+         </div>
+ 
+         <div class="box" style="cursor: pointer;">
+           <a href="{% url 'registerServiceman' %}" style= "text-decoration: none; color: black;">
+             <img src="{% static 'img/serviceman.png' %}"  style= " height:225px; width:200px;"   alt="SERVICEMAN" >
+           <h2 style="margin-top: 16px; ">FOR SERVICEMAN</h2>
+           </a>
+ 
+         
+         </div>
+      </div>
+      
+   </section>
+
+{% endblock %}

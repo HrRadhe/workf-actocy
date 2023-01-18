@@ -1,0 +1,69 @@
+.wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: rgb(251, 194, 82);
+    color: rgb(10, 10, 10);
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+}
+
+.wrapper .btn:hover {
+    background-color: #000000;
+    color: #FBC252;
+}
+
+
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(0, 0, 0);
+  }
+
+  .navbar-light .navbar-nav .nav-link:before{
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: rgb(4, 4, 4);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition:.3s linear;
+}
+
+.navbar-light .navbar-nav .nav-link:hover:before{
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.navbar > .container, .navbar > .container-fluid, .navbar > .container-lg, .navbar > .container-md, .navbar > .container-sm, .navbar > .container-xl, .navbar > .container-xxl {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 30px;
+  }
+
+@keyframes show-toast{
+    0% {bottom: -100%}
+    20% {bottom: 100px}
+    80% {bottom: 100px}
+    100% {bottom: -100%}
+}
+
+.show-notification{
+    position: fixed;
+    bottom: 100%;
+    right: 20px;
+    animation-name: show-toast;
+    animation-duration: 8s;
+    z-index: 99;
+}
+
+.social-links{
+    width: 225px !important;
+}
+
