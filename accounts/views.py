@@ -8,8 +8,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .utils import detectuser,send_verification_email
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
-
+from orders.models import Order
+from django.core.paginator import Paginator
 from django.core.exceptions import PermissionDenied
+from django.utils.datastructures import MultiValueDictKeyError
 
 def check_role_user(user):
     if user.role == 2:
@@ -30,7 +32,7 @@ def registerUser(request):
         messages.warning(request,'You are already logged in.')
         return redirect('myAccount')
     elif request.method == 'POST':
-        print(request.POST)
+        # print(request.POST)
         form = userForm(request.POST)
 
         if form.is_valid():
@@ -142,12 +144,29 @@ def myAccount(request):
 @login_required(login_url='login')
 @user_passes_test(check_role_user)  
 def customerDashboard(request):
-    return render(request , 'accounts/customerDashboard.html')
+    user = request.user
+    orders = Order.objects.filter(user=user, is_ordered=True, status = 'New').order_by('-created_at')
+    if orders.count() > 10:
+        nav = True
+    else:
+        nav = False
+    # print(nav)
+    
+
+    paginator = Paginator(orders,10)
+    page_no = request.GET.get('page')
+    current_page = paginator.get_page(page_no)
+
+    context = {
+        'orders' : current_page,
+        'nav' : nav,
+    }
+    return render(request , 'customers/c_booking.html',context)
 
 @login_required(login_url='login')
 @user_passes_test(check_role_serviceman)  
 def servicemanDashboard(request):
-    return render(request , 'accounts/servicemanDashboard.html')
+    return render(request , 'serviceman/s_booking.html')
 
 
 def forgotpassword(request):

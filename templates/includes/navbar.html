@@ -16,15 +16,15 @@
                     <div class="navbar-nav">
                         <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
                         <a href="#" class="nav-item nav-link">About us</a>
-                        <a href="#" class="nav-item nav-link">Orders</a>
+                        <a href="#" class="nav-item nav-link">Services</a>
                         <a href="#" class="nav-item nav-link">Contact us</a>
-                        <a href="#" class="nav-item nav-link">Feedback</a>
+                        {% comment %} <a href="#" class="nav-item nav-link">Feedback</a> {% endcomment %}
                         
                     </div>
-                    <form class="d-flex">
+                    <form method="get" action="{% url 'search' %}" >
                         <div class="input-group">
-                            <input type="text" class="form-control searchbar-wf" placeholder="Search">
-                            <button type="button" class="btn btn-secondary icon-wf"><i class="fa fa-search"></i></button>
+                            <input type="text" class="form-control searchbar-wf" placeholder="Search" name="search">
+                            <button type="submit" class="btn btn-secondary icon-wf"><i class="fa fa-search"></i></button>
                         </div>
                     </form>
                     <div class="navbar-nav">

@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% include 'includes/alerts.html' %}
+
+
+<div class="container od ">
+    <div class="row">
+        <div class="col text-center">
+            <h4><b>Booking Detail</b></h4>
+            <hr>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col">
+            <h5>Booking Info</h5>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Booking No :
+        </div>
+        <div class="col text-left">
+            <strong>{{order}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Booking Date :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.created_at |date:"d M Y"}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Hire Date :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.date |date:"d M Y"}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Status :
+        </div>
+        <div class="col text-left text-warning">
+            <strong>Pending</strong>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col">
+            <h5>Address Info</h5>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Name :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.name}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Mobile No. :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.phone}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Address :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.address}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            City :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.city}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Pin Code :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.pin_code}}</strong>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col">
+            <h5>Serviceman Info</h5>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Name :
+        </div>
+        <div class="col-7 text-left">
+            <strong>{{order.serviceman.user.full_name}}</strong>
+        </div>
+        <div class="col-4 od-col-p">
+            <div class="box box--6">
+                {% if order.serviceman.user_profile.profile_picture %}
+                <img src="{{ order.serviceman.user_profile.profile_picture.url}}" alt="Profile Pic">
+                {% else %}
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile Pic" width="103"
+                    height="116">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Mobile Number :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.serviceman.user.phone_number}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Email :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.serviceman.user.email}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1 mb-5">
+        <div class="col-1"></div>
+        <div class="col-2">
+            Service :
+        </div>
+        <div class="col text-left">
+            <strong>{{order.service}}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col text-center">
+            {% comment %} <form> {% endcomment %}
+                {% comment %} {% csrf_token %} {% endcomment %}
+                <button type="submit" class="btn btn-danger" onclick="confirm()">
+                    Cancel Booking
+                </button>
+            {% comment %} </form> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirm() {
+        console.log("Booking");
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to renew this booking",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#fbc225',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Cancel Booking.'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                url: "{% url 'cancel_order' order.pk %}",
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(data) {
+                    if (data.success) {
+                        Swal.fire(
+                            'Cancelled!',
+                            'Your booking has been cancelled.',
+                            'success'
+                        );
+                        window.location.replace("{% url 'all_booking' %}");
+                    }
+                }
+            });
+            }
+        })
+    }
+</script>
+
+{% endblock %}

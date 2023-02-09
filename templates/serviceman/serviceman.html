@@ -25,6 +25,10 @@
             <i class="fa-solid fa-user"></i>
             {{form.last_name}}
         </div>
+        {% comment %} <div class="form-field d-flex align-items-center">
+            <i class="fa fa-image-portrait"></i>
+            {{s_form.serviceman_id}}
+        </div>   {% endcomment %}
         <div class="form-field d-flex align-items-center">
             <i class="fa-solid fa-user"></i>
             {{form.username}}
@@ -62,9 +66,11 @@
         </div> -->
 
         <div class="form-field d-flex align-items-center">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa fa-id-card"></i>
             {{s_form.serviceman_id}}
         </div>
+
+        
 
         <ul class="errorlist">
             {% if form.errors %}

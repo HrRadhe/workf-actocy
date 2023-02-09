@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% include 'includes/alerts.html' %}
+
+<div class="container pe-0 ps-0" style="margin-left: auto;">
+  <div class="row">
+    {% if names %}
+    {% if not names.empty %}
+    <h3>A results base on <strong>"{{result}}"</strong></h3>
+
+    <!-- name via search result -->
+    {% for name in names %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="our-team">
+        <div class=" picture">
+        
+          {% if name.userprofile.profile_picture %}
+          <img src="{{name.userprofile.profile_picture.url}}" alt="Profile Pic" class="img-fluid">
+          {% else %}
+          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile Pic" class="img-fluid">
+          {% endif %}
+        </div>
+        <div class="team-content">
+          <h3 class="name">{{name.first_name}} {{name.last_name}}</h3>
+          <h4 class="title">{{name.user.mainservice.name}}</h4>
+          
+          <!-- {{name.user.Serviceman.serviceman_slug}} -->
+        </div>
+        <ul class="social">
+          <li><a href="{% url 'checkout' name.pk%}">Hire Me..</a></li>
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% else %}
+    <h3>No match found relented a keyword <strong>"{{result}}"</strong></h3>
+    {% endif %}
+
+    {% else %}
+    <h3>No match found relented a keyword <strong>"{{result}}"</strong></h3>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

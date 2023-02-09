@@ -87,7 +87,10 @@ class User(AbstractBaseUser):
         elif self.role == 2:
             user_role = 'Customer'
         return user_role
-
+    
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
 class UserProfile(models.Model):
     # user = OneToOneField(User, on_delete=models.CASCADE, blank = True,null = True)
@@ -101,11 +104,7 @@ class UserProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
-
-    # def full_address(self):
-    #     return f'{self.address_line_1}, {self.address_line_2}'
-
-
+    
     def __str__(self):
         return self.user.phone_number
 

@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% include 'includes/alerts.html' %}
+<div class="container">
+    <div class="booking">
+        <div class="container-fluid bg-3 text-center m-0 p-0 " style="overflow: hidden;">
+            <form action="{% url 'my_service' %}" method="post">
+                {% csrf_token %}
+                <h3 class="s-head">My Service</h3>
+                <h5 class="s-h3" style="padding-top: 20px;">Repair & Maintain</h5>
+                <hr>
+
+                <div class="row s-row">
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Vehicle Repairing" id="1" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Vehicle Repairing
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Technician" id="2" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Technician
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Painter" id="3" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Painter
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Equipment" id="4" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Equipment
+                        </label>
+                    </div>
+                </div>
+
+                <h5 class="s-h3">Home & Renovations</h5>
+                <hr>
+                <div class="row s-row">
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Plumbing" id="5" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Plumbing
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Electrician" id="6" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Electrician
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Cleaning" id="7" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Cleaning
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="checkbox" name="service" value="Carpenter" id="8" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Carpenter
+                        </label>
+                    </div>
+                </div>
+
+                <h5 class="s-h3">Garden</h5>
+                <hr>
+                <div class="row s-row">
+                    <div class="col-sm-4">
+                        <input type="checkbox" name="service" value="Grass Cutting" id="9" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Grass Cutting
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="checkbox" name="service" value="Pesticide Spray" id="10" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Pesticide Spray
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="checkbox" name="service" value="Planting" id="11" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Planting
+                        </label>
+                    </div>
+                </div>
+
+                <h5 class="s-h3">Driver</h5>
+                <hr>
+                <div class="row s-row">
+                    <div class="col-sm-4">
+                        <input type="checkbox" name="service" value="Car Driver" id="12" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Car Driver
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="checkbox" name="service" value="Farming Vehicle Driver" id="13" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Farming Vehicle Driver
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="checkbox" name="service" value="Heavy Vehicle Driver" id="14" onchange="load()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Heavy Vehicle Drivers
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row s-row s-border">
+                    <span>
+                        <input class="btn btn-color" type="submit" value="Submit">
+                    </span>
+
+                    <input type="text" id="selectedServices" hidden name="selectedService">
+                    <input type="text" id="selectedMainServices" hidden name="selectedMainService">
+
+                </div>
+        </div>
+        </form>
+    </div>
+    <!-- nav bar -->
+    {% include 'includes/serviceman_nav.html' %}
+</div>
+
+<script>
+    function load() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        const selectedService = document.querySelector("#selectedServices");
+        const selectedMainService = document.querySelector("#selectedMainServices");
+
+        const mainService1 = document.getElementById("1");
+        const mainService2 = document.getElementById("2");
+        const mainService3 = document.getElementById("3");
+        const mainService4 = document.getElementById("4");
+
+        const mainService5 = document.getElementById("5");
+        const mainService6 = document.getElementById("6");
+        const mainService7 = document.getElementById("7");
+        const mainService8 = document.getElementById("8");
+
+        const mainService9 = document.getElementById("9");
+        const mainService10 = document.getElementById("10");
+        const mainService11 = document.getElementById("11");
+
+        const mainService12 = document.getElementById("12");
+        const mainService13 = document.getElementById("13");
+        const mainService14 = document.getElementById("14"); 
+
+        let services = [];
+        let main = [];
+        let sum =0;
+        for (const checkbox of checkboxes) {
+            services.push(checkbox.value);
+        }
+
+        selectedService.value = services.join(', ');
+
+        if (mainService1.checked || mainService2.checked || mainService3.checked || mainService4.checked){
+            console.log("done");
+            main.push("Repair Maintain");
+        }
+        if (mainService5.checked || mainService6.checked || mainService7.checked || mainService8.checked){
+            console.log("done");
+            main.push("Home Renovations");
+        }
+        if (mainService9.checked || mainService10.checked || mainService11.checked){
+            console.log("done");
+            main.push("Garden");
+        }
+        if (mainService12.checked || mainService13.checked || mainService14.checked){
+            console.log("done");
+            main.push("Driver");
+        } 
+        selectedMainService.value = main.join(", ");        
+    }
+    
+</script>
+
+{% endblock %}

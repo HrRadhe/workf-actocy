@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container mt-1 mb-1 pt-5 pb-5 p-con">
+    <div class="justify-content-center row">
+        <div class="col-md-8">
+            <div class="bg-white p-3">
+
+
+                <div>
+                    <strong>
+                        <h4>
+                            <div style="text-align: center;">Booking Details</div>
+                        </h4><hr>
+                    </strong>
+                    <div class="row mt-3 ">
+                        <div class="col-4" style="text-align: right;"><strong>Order Date : </strong></div>
+                        <div class="col-5">{{order.created_at |date:"d M Y"}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Order No : </strong></div>
+                        <div class="col-5">{{order}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Booking Date : </strong></div>
+                        <div class="col-5">{{order.date |date:"d M Y"}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Service type : </strong></div>
+                        <div class="col-5">{{order.service}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Serviceman Name : </strong></div>
+                        <div class="col-5">{{order.serviceman.user.first_name}} {{order.serviceman.user.last_name}}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4" style="text-align: right;"><strong>Booking Status : </strong></div>
+                        <div class="col-5"><span class="status text-success"
+                                style="margin-bottom: 14px; font-size: 60px;">&bull;</span>{{order.status}}</div>
+                    </div>
+
+                </div>
+                <hr>
+               
+
+                <div class="mt-2">
+                    <strong>
+                        <h4>
+                            <div style="text-align: center;">Review Detail</div>
+                        </h4><hr>
+                    </strong>
+                    <div class="row mt-3 ">
+                        <div class="col-4" style="text-align: right;"><strong>Title : </strong></div>
+                        <div class="col-5">{{review.heading}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Review : </strong></div>
+                        <div class="col-5">{{review.review}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Star : </strong></div>
+                        <div class="col-5">
+                        {% if review.star == 1 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 2 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 3 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 4 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 5 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% endif %}
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

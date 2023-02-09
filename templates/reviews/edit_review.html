@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container mt-1 mb-1 pt-5 pb-5 p-con">
+    <div class="justify-content-center row">
+        <div class="col-md-8">
+            <div class="bg-white p-3">
+
+
+                <div>
+                    <strong>
+                        <h4>
+                            <div style="text-align: center;">Booking Details</div>
+                        </h4><hr>
+                    </strong>
+                    <div class="row mt-3 ">
+                        <div class="col-4" style="text-align: right;"><strong>Order Date : </strong></div>
+                        <div class="col-5">{{order.created_at |date:"d M Y"}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Order No : </strong></div>
+                        <div class="col-5">{{order}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Booking Date : </strong></div>
+                        <div class="col-5">{{order.date |date:"d M Y"}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Service type : </strong></div>
+                        <div class="col-5">{{order.service}}</div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Serviceman Name : </strong></div>
+                        <div class="col-5">{{order.serviceman.user.first_name}} {{order.serviceman.user.last_name}}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4" style="text-align: right;"><strong>Booking Status : </strong></div>
+                        <div class="col-5"><span class="status text-success"
+                                style="margin-bottom: 14px; font-size: 60px;">&bull;</span>{{order.status}}</div>
+                    </div>
+
+                </div>
+                <hr>
+                <br>
+
+                <div>
+                    <form action="{% url 'edit_review' order.pk %}" method="post">
+                    {% csrf_token %}
+                    <strong>
+                        <h4>
+                            <div style="text-align: center;">Give Review</div>
+                        </h4>
+                    </strong>
+                    <div class="row mt-1">
+                        <div class="col-4" style="text-align: right;"><strong>Title : </strong></div>
+                        <div class="col-5"><input type="text" name="heading" value="{{review.heading}}" class="form-control" placeholder="Title of the review.."></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4 " style="text-align: right;"><strong>Review : </strong></div>
+                        <div class="col-5"><textarea name="review" id="" cols="30" rows="10" class="form-control" placeholder="Write a review..">{{review.review}}</textarea>
+                            <strong><small style="color :rgb(128, 131, 131)">[Note: Star ranting is not changeable.]</small></strong>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4" style="text-align: right;"><strong>Star : </strong></div>
+                        <div class="col-5">
+                            {% if review.star %}
+                                {% for i in star %}
+                                <input type="checkbox" name="rate" id="rate-{{i}}">
+                                <label for="rate-{{i}}" class="fas fa-star star-e" id="star-{{i}}" style="color: #fbc225"></label>
+                                {% endfor %}
+                            {% else %}
+                            <input type="checkbox" name="rate" id="rate-1" onchange="fill(this.id),unfill(this.id)">
+                            <label for="rate-1" class="fas fa-star star-e" id="star-1"></label>
+                            <input type="checkbox" name="rate" id="rate-2" onchange="fill(this.id),unfill(this.id)">
+                            <label for="rate-2" class="fas fa-star star-e" id="star-2"></label>
+                            <input type="checkbox" name="rate" id="rate-3" onchange="fill(this.id),unfill(this.id)">
+                            <label for="rate-3" class="fas fa-star star-e" id="star-3"></label>
+                            <input type="checkbox" name="rate" id="rate-4" onchange="fill(this.id),unfill(this.id)">
+                            <label for="rate-4" class="fas fa-star star-e" id="star-4"></label>
+                            <input type="checkbox" name="rate" id="rate-5" onchange="fill(this.id),unfill(this.id)" >
+                            <label for="rate-5" class="fas fa-star star-e" id="star-5"></label>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col" style="text-align: center;">
+                            <button type="submit" class="btn btn-warning">Submit</button>
+                        </div>
+                    </div>
+                    <input type="number" id="star-value" hidden name="star-value" value="{{review.star}}">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function fill(id) {
+    var number = id.split("-")[1];
+
+    // Clear previous stars
+    for (var i = 5; i > 0; i--) {
+        if (i > number) {
+            document.getElementById("star-" + i).style.color = "black";
+            document.getElementById("rate-" + i).checked = false;
+        }
+    }
+    
+    for (var i = 1; i <= number; i++) {
+        document.getElementById("star-" + i).style.color = "#fbc225";
+        document.getElementById("rate-" + i).checked = true;
+        document.getElementById("star-value").value = i;
+    }
+}
+
+function unfill(id){
+    var number = id.split("-")[1];
+    // const star5 = document.getElementById("star-"+number);
+    // const style = window.getComputedStyle(star5);
+    // // console.log(style.color);
+    // // var style = id.value;
+    // // var Style = id.styles.color;
+    // if (style.color == "rgb(251, 194, 37)"){
+    //     document.getElementById("star-" + number).style.color = "black";
+    //     console.log("true")
+    // }
+    // // else{
+    // //     console.log("unchecked");
+    // // }
+}
+</script>
+
+{% endblock %}

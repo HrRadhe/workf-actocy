@@ -1,0 +1,60 @@
+<!-- <div class="container"> -->
+  <div class="col-md-4 static">
+    <div class="profile-card m-0">
+
+    {% if user.userprofile.profile_picture %}
+    <img src="{{user.userprofile.profile_picture.url}}" alt="Profile Pic" class="profile-photo text-dark">
+    {% else %}
+    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile Pic" class="profile-photo text-dark">
+     {% endif %}
+      {% comment %} <img src="./img/2.jpg" alt="Service Man" class="profile-photo text-dark"> {% endcomment %}
+      <h5><a href="#" class="text-dark text-decoration-none">{{user.first_name}} {{user.last_name}}</a></h5>
+      <!-- <a href="#" class="text-white"><i class="fa fa-user"></i> 1,299 followers</a> -->
+    </div><!--profile card ends-->
+
+    <ul class="nav-news-feed" style="border-radius:4px;">
+      <li><i class="fa-solid fa-book w3-bar-item w3-button tablink w3-red"></i>
+        <div><a href="{% url 'customerDashboard' %}">My Booking</a></div>
+      </li>
+      <li><i class="fa-solid fa-star w3-bar-item w3-button tablink"></i>
+        <div><a href="{% url 'c_reviews' %}">My Reviews</a></div>
+      </li>
+      <li><i class="fa-solid fa-message w3-bar-item w3-button tablink"></i>
+        <div><a href="{% url 'all_booking' %}">My Appointment</a></div>
+      </li>
+      <li><i class="fa-sharp fa-solid fa-edit w3-bar-item w3-button tablink"></i>
+        <div><a href="{% url 'c_editprofile' %}"> Edit Profile</a></div>
+      </li>
+      <li><i class="fa-solid fa-trash w3-bar-item w3-button tablink"></i>
+        <div><a onclick="confirm()" class="test-mute  ">Delete profile</a></div>
+      </li>
+      <li><i class="fa-solid fa-right-from-bracket w3-bar-item w3-button tablink"></i>
+        <div><a href="{% url 'logout' %}">Sign out</a></div>
+      </li>
+    </ul><!--news-feed links ends-->
+  </div>
+  <script>
+    function confirm() {
+      console.log("Booking");
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to recover the account",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'Black',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Delete Account.'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your account deleted successfully.',
+            'success'
+          );
+          window.location.replace("{% url 'c_delete_profile' %}");
+  
+        }
+      })
+    }
+  </script>
+<!-- </div> -->

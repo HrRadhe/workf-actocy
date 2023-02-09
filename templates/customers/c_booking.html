@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% include 'includes/alerts.html' %}
+
+<div class="container" style="margin-bottom :180px">
+    <div class="booking">
+        <div class="profile">
+            <div class="main-body p-0">
+
+                <div id="Booking" class="w3-container w3-border city">
+                    <table id="non" class="table table-striped table-hover order text-center">
+                        <thead>
+                            <tr style="background-color: #fbc252;">
+                                <th>Order No</th>
+                                <th>Service</th>
+                                <th>Serviceman</th>
+                                <th>Appointment Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        {% if orders %}
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+
+                                <td><a style="text-decoration: none !important; color: black;"
+                                        href="{% url 'pending_order' order.pk %}">{{order}}</a></td>
+                                <td><img src="{% static 'img/farming vehical.png' %}" class="avatar" width="150px"
+                                        alt="{{order.service}}"></td>
+                                <td>{{order.serviceman.user.first_name}} {{order.serviceman.user.last_name}}</td>
+                                <td>{{order.date |date:"d M Y" }}</td>
+                                <td><span class="status text-warning"
+                                        style="font-size: 60px; margin-bottom: 15px;">&bull;</span>Pending</td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% else %}
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <h4>There are no one pending order.</h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endif %}
+                    </table>
+                    {% if nav == True %}
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            {% if orders.has_previous %}
+                            <li class="page-item ">
+                                <a class="page-link" href="?page={{ orders.previous_page_number }}">Previous</a>
+                            </li>
+                            {% endif %}
+                            
+                            <li class="page-item active">
+                                <a class="page-link" href="">Page {{ orders.number }} of {{ orders.paginator.num_pages }}<span class="sr-only"></span></a>
+                            </li>
+                           
+                            {% if orders.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ orders.next_page_number }}">Next</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- nav bar -->
+    {% include 'includes/customer_nav.html' %}
+</div>
+{% endblock %}

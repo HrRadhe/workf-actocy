@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,12 @@ INSTALLED_APPS = [
 
     'accounts',
     'serviceman',
+    'customers',
+    'orders',
+    'services',
+    'reviews',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -66,6 +73,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'serviceman.context_processors.get_serviceman',
+                'customers.context_processors.get_user',
+
             ],
         },
     },
@@ -151,3 +161,12 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 DEFAULT_FROM_EMAIL = 'foodOnline Marketplace <harshil.iananya@gmail.com>'
+
+# Celery task scheduling system with a periodic task
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BEAT_SCHEDULE = {
+     'run_daily_cancel_order': {
+         'task': 'orders.tasks.cancel_expired_orders',
+         'schedule': crontab(hour=17, minute=18),
+     },
+ }

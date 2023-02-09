@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container mt-1 mb-1 pt-5 pb-5 p-con">
+        <div class="justify-content-center row">
+            <div class="col-md-8">
+                <div class="bg-white p-3">
+                    <img src="{% static  'img/Asset 2.png' %}" alt="Work Factory" width="200">
+                    <div class="row">
+
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <p class="mb-0">{{order.name}}</p>
+                            <p class="mb-0">{{order.address}}</p>
+                            <p class="mb-0">{{order.phone}}</p>
+                            <p class="mb-0">{{order.email}}</p>
+                        </div>
+                    </div><br>
+
+                    <h6>Hello {{order.name}}, </h6><span>Thank you for your booking. Your Serviceman is check details accept your appointment. </span> <br><br>   
+                    <hr>
+
+                    <div>
+                        <strong><h4><div style="text-align: center;">Booking Details</div></h4></strong>
+                        <div class="row mt-1 ">
+                            <div class="col-4" style="text-align: right;"><strong>Order Date : </strong></div>
+                            <div class="col-5" >{{order.created_at |date:"d M Y"}}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-4" style="text-align: right;"><strong>Order No : </strong></div>
+                            <div class="col-5" >{{order}}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-4" style="text-align: right;"><strong>Booking Date : </strong></div>
+                            <div class="col-5" >{{order.date |date:"d M Y"}}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-4" style="text-align: right;"><strong>Service type : </strong></div>
+                            <div class="col-5" >{{order.service}}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-4" style="text-align: right;"><strong>Serviceman Name : </strong></div>
+                            <div class="col-5" >{{order.serviceman.user.first_name}} {{order.serviceman.user.last_name}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-4" style="text-align: right;"><strong>Booking Status : </strong></div>
+                            <div class="col-5"><span class="status text-info" style="margin-bottom: 7px;">&bull;</span>{{order.status}}</div>
+                        </div>
+                    
+                    </div>
+                    <hr>
+                    <br>
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="d-block font-weight-bold">Thanks for booking with us.</span>
+                            <span>Work Factory Team</span>
+                        </div>
+                        <div>
+                            <span class="d-block font-weight-bold">Need help?</span>
+                            <span>Call - +91 79xxxxxx79 </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

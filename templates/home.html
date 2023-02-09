@@ -4,47 +4,51 @@
 
 
 {% block content %}
+{% include 'includes/alerts.html' %}
 <!-- slider -->
- <section class="sildermove">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<section class="sildermove">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'img/2.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{% static 'img/2.jpg' %}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'img/slide3.jpg' %}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Some representative placeholder content for the second slide.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'img/slide4.jpg' %}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Some representative placeholder content for the third slide.</p>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
- </section>
+      <div class="carousel-item">
+        <img src="{% static 'img/slide3.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/slide4.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
 <!-- slider end -->
 
 
@@ -54,106 +58,98 @@
 <section>
   <div class="services">
     <h1>Our SpecialServices</h1>
-      <div class="cen">
-        <div class="service">
-          <img src="{% static 'img/quality.png' %}">
-            <h2>Best Quality</h2>
-          <p>We believe that attention to detail and excellent
-             customer service are key to a successful business,
-              and we strive to excel in both areas.</p>
-        </div>
-  
-        <div class="service">
-          <img src="{% static 'img/expertise.png' %}">
-            <h2>Expert Adivce</h2>
-          <p>We pride ourselves on being a valuable resource for our clients,
-             offering expert advice and guidance whenever it's needed."</p>
-        </div>
-  
-        <div class="service">
-          <img src="{% static 'img/expert advice.png' %}"> 
-            <h2>Labour Expertise</h2>
-          <p>F 
-            Our team has a proven track record of success in [industry/field],
-             and we are always looking for ways to improve and expand our expertise.
-            </p>
-x``        </div>
-  
-        <div class="service">
-          <img src="{% static 'img/time service.png' %}">
-            <h2>On time Service</h2>
-          <p>We understand the importance of sticking to a schedule, 
-            and we work hard to make sure that our services are delivered 
-            on time, every time</p>
-        </div>
-  
-  
-       
+    <div class="cen">
+      <div class="service">
+        <img src="{% static 'img/quality.png' %}">
+        <h2>Best Quality</h2>
+        <p>We believe that attention to detail and excellent
+          customer service are key to a successful business,
+          and we strive to excel in both areas.</p>
       </div>
-  
+
+      <div class="service">
+        <img src="{% static 'img/expertise.png' %}">
+        <h2>Expert Adivce</h2>
+        <p>We pride ourselves on being a valuable resource for our clients,
+          offering expert advice and guidance whenever it's needed."</p>
+      </div>
+
+      <div class="service">
+        <img src="{% static 'img/expert advice.png' %}">
+        <h2>Labour Expertise</h2>
+        <p>F
+          Our team has a proven track record of success in all types of industry,
+          and we are always looking for ways to improve and expand our expertise.
+        </p>
+      </div>
+
+      <div class="service">
+        <img src="{% static 'img/time service.png' %}">
+        <h2>On time Service</h2>
+        <p>We understand the importance of sticking to a schedule,
+          and we work hard to make sure that our services are delivered
+          on time, every time</p>
+      </div>
+
+    </div>
+
   </div>
 </section>
- 
+
 
 <!-- services -->
 
 <section>
-  <div class="container">
+  <div class="container pe-0 ps-0" style=" padding-top: 13px; margin-left: auto;">
 
-    <h1  class="heading" style="color: black;">our services</h1>
+    <h1 class="heading" style="color: black;">our services</h1>
 
     <div class="box-container">
 
-        <div onclick="service();" class="box"style="cursor: pointer;">
-            <a>
-              <img src="{% static 'img/s1.png' %}"   alt="" >
-            <h3>Repair and maintain</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-            </a>
-
-            
-        </div>
-
-        <div onclick="service();" class="box"style="cursor: pointer;">
-          <a>
-            <img src="{% static 'img/s1.png' %}"   alt="" >
-          <h3>Home renovation</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-          </a>
-
-          
-         </div>
-
-         
-
-      <div onclick="service();" class="box"style="cursor: pointer;">
+      <div onclick="service();" class="box box-1" style="cursor: pointer;">
         <a>
-          <img src="{% static 'img/s1.png' %}"   alt="" >
-        <h3>Driver</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
+          <img src="{% static 'img/technician.png' %}" alt="">
+          <h3 class="h3-heading">Repair and maintain</h3>
+          <p>We offer comprehensive repair and maintenance services for [type of product or equipment].</p>
         </a>
 
-        
-       </div>
 
-       <div onclick="service();" class="box"style="cursor: pointer;" >
-          <img src="{% static 'img/s1.png' %}"   alt="" >
-        <h3>Fashion & Beauty</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-        
+      </div>
 
-        
-    </div>
+      <div onclick="service();" class="box box-1" style="cursor: pointer;">
+        <a>
+          <img src="{% static 'img/home renovation.png' %}" alt="">
+          <h3 class="h3-heading">Home renovation</h3>
+          <p>We specialize in providing top-quality home renovation services to homeowners.</p>
+        </a>
 
-    <div onclick="service();" class="box"style="cursor: pointer;">
-      <a>
-        <img src="{% static 'img/s1.png' %}"   alt="" >
-      <h3>Garden</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-      </a>
 
-      
-     </div>
+      </div>
+
+
+
+      <div onclick="service();" class="box box-1" style="cursor: pointer;">
+        <a>
+          <img src="{% static 'img/driver.png' %}" alt="">
+          <h3 class="h3-heading">Driver</h3>
+          <p>We offer reliable and professional driver services for a variety of needs.</p>
+        </a>
+
+
+      </div>
+
+
+
+
+      <div onclick="service();" class="box box-1" style="cursor: pointer;">
+        <a>
+          <img src="{% static 'img/garden.png' %}" alt="">
+          <h3 class="h3-heading">Garden</h3>
+          <p>We are dedicated to helping our clients create and maintain beautiful, healthy gardens.</p>
+        </a>
+
+
+      </div>
 
     </div>
   </div>
@@ -161,10 +157,10 @@ x``        </div>
 
 
 
- <!-- reviews                                                                                                                                       -->
- <section id="contact" class="contact">
+<!-- reviews                                                                                                                                       -->
+<section id="contact" class="contact">
 
-  <div class="container" data-aos="fade-up">
+  <div class="container" style=" padding-top: 13px; margin-left: auto;" data-aos="fade-up">
 
     <div class="aboutfile">
       <header class="section-header">
@@ -182,29 +178,29 @@ x``        </div>
             <div class="info-box">
               <img src="{% static 'img/adress.png'%}" width="100px">
               <h3>Address</h3>
-              <p>A108 Adam Street,<br>New York, NY 535022</p>
+              <p>Ahmedabad,<br>Gujarat,380006,IN.</p>
             </div>
-            
+
           </div>
           <div class="col-md-6">
             <div class="info-box">
-              <img src="{% static 'img/call us.png'%}" width="100px">                
-                <h3>Call Us</h3>
-              <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+              <img src="{% static 'img/call us.png'%}" width="100px">
+              <h3>Call Us</h3>
+              <p>+91 77000 77000<br>+91 78000 78000</p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info-box">
               <img src="{% static 'img/email.png'%}" width="100px">
-                    <h3>Email Us</h3>
-              <p>info@example.com<br>contact@example.com</p>
+              <h3>Email Us</h3>
+              <p>info@workfactory.com<br>help@workfactory.com</p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info-box">
               <img src="{% static 'img/open hours.png'%}" width="100px">
               <h3>Open Hours</h3>
-              <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+              <p>Monday - Sunday<br>9:00AM - 05:00PM</p>
             </div>
           </div>
         </div>
@@ -249,69 +245,62 @@ x``        </div>
   </div>
 
 </section>
+
+
 <section>
-  <div class="rev-section">
+  <div class="rev-section" style=" padding-top: 13px;">
 
     <h2 class="title">Our Guests Love Us</h2>
-    <p class="note">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil laboriosam possimus perferendis non error neque.</p>
-    
+
     <div class="reviews">
-    
-    <div class="review">
-       <div class="head-review">
-        <img  class="user" src="{% static 'img/men.jpg'%}" width="250px">
+
+      {% for review in reviews%}
+      <div class="review">
+        <div class="head-review">
+          {% if user.userprofile.profile_picture %}
+          <img src="{{user.userprofile.profile_picture.url}}" alt="User Photo" class="user" width="250px">
+          {% else %}
+          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Photo" class="user" width="250px">
+          {% endif %}
+          <!-- <img class="user" src="{% static 'img/men.jpg'%}" > -->
+        </div>
+        <div class="body-review">
+          <div class="name-review">{{review.user.full_name}}</div>
+          <div class="place-review">{{review.user.userprofile.city}}</div>
+          <div class="rating">
+            {% if review.star == 1 %}
+            <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+          </div>
+          {% elif review.star == 2 %}
+          <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+          <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+        </div>
+        {% elif review.star == 3 %}
+        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
       </div>
-       <div class="body-review">
-          <div class="name-review">robot suna</div>
-          <div class="place-review">u.s.a</div>
-          <div class="rating">
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star-half"></i>
-          </div>
-          <div class="desc-review">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati eligendi suscipit illum officia ex eos.</div>
-       </div>
+      {% elif review.star == 4 %}
+      <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+      <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+      <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+      <i class="fa-solid fa-star" style="color:#fbc225;"></i>
     </div>
-    <div class="review">
-       <div class="head-review">
-          <img  class="user" src="{% static 'img/women.jpg'%}" width="250px">
-       </div>
-       <div class="body-review">
-          <div class="name-review">henscyyy</div>
-          <div class="place-review">uk</div>
-          <div class="rating">
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-          </div>
-          <div class="desc-review">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati eligendi suscipit illum officia ex eos.</div>
-       </div>
-    </div>
-    <div class="review">
-       <div class="head-review">
-          <img class="user" src="{% static 'img/men 2.jpg'%}" width="250px">
-       </div>
-       <div class="body-review">
-          <div class="name-review">jhonsa</div>
-          <div class="place-review">surat</div>
-          <div class="rating">
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star"></i>
-             <i class="fas fa-star-half"></i>
-          </div>
-          <div class="desc-review">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati eligendi suscipit illum officia ex eos.</div>
-       </div>
-    </div>
-    
-    </div>
-    
-    </div>
+    {% elif review.star == 5 %}
+    <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+    <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+    <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+    <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+    <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+  </div>
+  {% endif %}
+  <div class="desc-review">{{review.heading}}</div>
+  <!-- <div class="desc-review">{{review.review}}</div> -->
+  </div>
+  </div>
+  {% endfor %}
+  </div>
+
+  </div>
 </section>
 {% endblock %}
-

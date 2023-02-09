@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% include 'includes/alerts.html' %}
+
+<div class="container" style="margin-bottom :310px">
+    <div class="booking" style="width: 935px;">
+        <div class="profile">
+            <div class="main-body p-0">
+
+
+                <div id="Reviews" class="w3-container w3-border city" >
+                    <ul class="cards" id="cards">
+                        {% if reviews %}
+                        {% for review in reviews %}
+                        <li>
+                            <a href="{% url 'c_review_detail' review.pk %}" class="card reviewcards r-card">
+                                
+                                <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="{{review.order.service}}" />
+                                <div class="card__overlay">
+                                    <div class="card__header" style="padding-bottom: 6px;">
+                                        {% if review.serviceman.user_profile.profile_picture %}
+                                        <img src="{{review.serviceman.user_profile.profile_picture.url}}" alt="Serviceman Pic" class="card__thumb"">
+                                        {% else %}
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Serviceman Pic" class="card__thumb"">
+                                        {% endif %}
+                                        <!-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="Serviceman Pic" /> -->
+                                        <div class="card__header-text">
+                                            <h3 class="card__title">{{review.serviceman.user.full_name}}</h3>
+                                        </div>
+                                        
+                                    </div>
+                                    <div  style="padding-left: 40px;">
+                                    {% if review.star == 1 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 2 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 3 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 4 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% elif review.star == 5 %}
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                        <i class="fa-solid fa-star" style="color:#fbc225;"></i>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <li>
+                            <strong><h4 class="text-center"><b>You don't give any reviews for serviceman.</b></h4></strong>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- nav bar -->
+    {% include 'includes/customer_nav.html' %}
+</div>
+{% endblock %}
