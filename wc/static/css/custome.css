@@ -214,3 +214,9 @@
 .star-e{
     font-size: 30px;
 }
+
+.size{
+    width: 915px;
+    /* height: 750px; */
+    background-color: white;
+}

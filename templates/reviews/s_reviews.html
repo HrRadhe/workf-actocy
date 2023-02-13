@@ -17,19 +17,19 @@
                         {% if reviews %}
                         {% for review in reviews %}
                         <li>
-                            <a href="{% url 'c_review_detail' review.pk %}" class="card reviewcards r-card">
+                            <a href="{% url 'review_detail_s' review.pk %}" class="card reviewcards r-card">
                                 
                                 <img src="{{review.order.img.service_img.url}}" class="card__image" alt="{{review.order.service}}" />
                                 <div class="card__overlay">
                                     <div class="card__header" style="padding-bottom: 6px;">
-                                        {% if review.serviceman.user_profile.profile_picture %}
-                                        <img src="{{review.serviceman.user_profile.profile_picture.url}}" alt="Serviceman Pic" class="card__thumb"">
+                                        {% if review.user_profile.profile_picture %}
+                                        <img src="{{review.user_profile.profile_picture.url}}" alt="Customer Pic" class="card__thumb"">
                                         {% else %}
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Serviceman Pic" class="card__thumb"">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Customer Pic" class="card__thumb"">
                                         {% endif %}
                                         <!-- <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="Serviceman Pic" /> -->
                                         <div class="card__header-text">
-                                            <h3 class="card__title">{{review.serviceman.user.full_name}}</h3>
+                                            <h3 class="card__title">{{review.user.full_name}}</h3>
                                         </div>
                                         
                                     </div>
@@ -70,7 +70,6 @@
                         </li>
                         {% endif %}
                     </ul>
-                    {% if nav == True %}
                     <nav aria-label="...">
                         <ul class="pagination">
                             {% if reviews.has_previous %}
@@ -90,7 +89,6 @@
                             {% endif %}
                         </ul>
                     </nav>
-                    {% endif %}
                 </div>
 
 
@@ -99,6 +97,6 @@
     </div>
 
     <!-- nav bar -->
-    {% include 'includes/customer_nav.html' %}
+    {% include 'includes/serviceman_nav.html' %}
 </div>
 {% endblock %}

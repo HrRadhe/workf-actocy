@@ -14,16 +14,16 @@
 
     <ul class="nav-news-feed" style="border-radius:4px;">
       <li><i class="fa-solid fa-book w3-bar-item w3-button tablink w3-red"></i>
-        <div><a href="{% url 'customerDashboard' %}">My Booking</a></div>
+        <div><a href="{% url 'customerDashboard' %}" {% if '/customerDashboard/' == request.path or '/customers/' == request.path %} class="text-dark" {% endif %}>My Booking</a></div>
       </li>
       <li><i class="fa-solid fa-star w3-bar-item w3-button tablink"></i>
-        <div><a href="{% url 'c_reviews' %}">My Reviews</a></div>
+        <div><a href="{% url 'c_reviews' %}" {% if '/reviews/c-reviews/' == request.path or '/reviews/' == request.path %} class="text-dark" {% endif %}>My Reviews</a></div>
       </li>
       <li><i class="fa-solid fa-message w3-bar-item w3-button tablink"></i>
-        <div><a href="{% url 'all_booking' %}">My Appointment</a></div>
+        <div><a href="{% url 'all_booking' %}" {% if 'all-booking' in request.path %} class="text-dark" {% endif %}>My Appointment</a></div>
       </li>
       <li><i class="fa-sharp fa-solid fa-edit w3-bar-item w3-button tablink"></i>
-        <div><a href="{% url 'c_editprofile' %}"> Edit Profile</a></div>
+        <div><a href="{% url 'c_editprofile' %}" {% if 'profile' in request.path %} class="text-dark" {% endif %}> Edit Profile</a></div>
       </li>
       <li><i class="fa-solid fa-trash w3-bar-item w3-button tablink"></i>
         <div><a onclick="confirm()" class="test-mute  ">Delete profile</a></div>

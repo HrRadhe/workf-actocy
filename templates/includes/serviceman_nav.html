@@ -14,22 +14,22 @@
 
     <ul class="nav-news-feed" style="border-radius:4px;">
       <li><i class="fa-solid fa-book w3-bar-item w3-button tablink w3-red"></i>
-        <div><a href="{% url 'servicemanDashboard' %}">My Booking</a></div>
+        <div><a href="{% url 'servicemanDashboard' %}" {% if '/servicemanDashboard/' == request.path or '/serviceman/' == request.path %} class="text-dark" {% endif %}>My Booking</a></div>
       </li>
       <li><i class="fa-solid fa-star w3-bar-item w3-button tablink"></i>
-        <div><a href="#">My Reviews</a></div>
+        <div><a href="{% url 'reviews_s' %}" {% if 'reviews-s' in request.path %} class="text-dark" {% endif %}>My Reviews</a></div>
       </li>
       <li><i class="fa-solid fa-message w3-bar-item w3-button tablink"></i>
-        <div><a href="#">My Appoiment</a></div>
+        <div><a href="{% url 'all_booking_s' %}" {% if 'all-booking-s' in request.path %} class="text-dark" {% endif %}>My Appoiment</a></div>
       </li>
       <li><i class="fa-solid fa-wallet w3-bar-item w3-button tablink"></i>
-        <div><a href="#">Wallet</a></div>
+        <div><a href="{% url 'wallet' %}" {% if 'wallet' in request.path %} class="text-dark" {% endif %}>Wallet</a></div>
       </li>
       <li><i class="fa-solid fa-toolbox"></i>
-        <div><a href="{% url 'my_service' %}"> My Services</a></div>
+        <div><a href="{% url 'my_service' %}" {% if 'my-service' in request.path %} class="text-dark" {% endif %}>My Services</a></div>
       </li>
       <li><i class="fa-sharp fa-solid fa-edit w3-bar-item w3-button tablink"></i>
-        <div><a href="{% url 's_editprofie' %}"> Edit Profile</a></div>
+        <div><a href="{% url 's_editprofie' %}" {% if 'profile' in request.path %} class="text-dark" {% endif %}> Edit Profile</a></div>
       </li>
       <li><i class="fa-solid fa-trash w3-bar-item w3-button tablink"></i>
         <div><a class="text-mute" onclick="confirm()">Delete profile</a></div>

@@ -3,13 +3,29 @@ from .models import Review
 from orders.models import Order
 from django.db.models import Q
 from django.contrib import messages
+from serviceman.models import Serviceman
+from wallet.models import Wallet
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def c_reviews(request):
     reviews = Review.objects.filter(Q(user=request.user) & Q(star__in = [1,2,3,4,5]))
 
+    if reviews.count() > 8:
+        nav = True
+    else:
+        nav = False
+    # print(nav)
+
+    paginator = Paginator(reviews,8)
+    page_no = request.GET.get('page')
+    current_page = paginator.get_page(page_no)
+    # print(current_page)
+
     context= {
-        'reviews' : reviews,
+        'reviews' : current_page,
+        'nav' : nav
     }
     return render(request , 'reviews/c_review.html',context)
 
@@ -39,6 +55,11 @@ def edit_review(request, pk):
             review.review = w_review
             review.save()
             messages.success(request , 'Your review is submitted successfully.')
+
+            if int (w_star) >= 3:
+                wallet = Wallet.objects.create(user=request.user, serviceman=order.serviceman, order=order, coin = w_star, review=Review.objects.get(order=order))
+                # wallet.
+                wallet.save()
             return redirect('c_reviews')
 
     try:
@@ -58,8 +79,48 @@ def edit_review(request, pk):
 def c_review_detail(request, pk):
     review = Review.objects.get(pk=pk)
     order = Order.objects.get(order_number=review.order)
+    
+
+    context = {
+        'order' : order,
+        'review' : review,
+        # 'nav' : nav
+    }
+    return render(request , 'reviews/c_reviews_detail.html',context)
+
+
+def reviews_s(request):
+    reviews = Review.objects.filter(Q(serviceman=Serviceman.objects.get(user=request.user)) & Q(star__in = [1,2,3,4,5]))
+
+    if reviews.count() > 8:
+        nav = True
+    else:
+        nav = False
+    # print(nav)
+
+    paginator = Paginator(reviews,8)
+    page_no = request.GET.get('page')
+    current_page = paginator.get_page(page_no)
+    # print(current_page)
+
+    context= {
+        'reviews' : current_page,
+        'nav' : nav
+    }
+    return render(request , 'reviews/s_reviews.html',context)
+
+def review_detail_s(request, pk):
+    review = Review.objects.get(pk=pk)
+    order = Order.objects.get(order_number=review.order)
     context = {
         'order' : order,
         'review' : review,
     }
-    return render(request , 'reviews/c_reviews_detail.html',context)
+    return render(request , 'reviews/review_detail_s.html',context)
+
+def check(request):
+    user = request.user
+    if user.role == 1:
+        return redirect('reviews_s')
+    elif user.role == 2:
+        return redirect('c_reviews')

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% include 'includes/alerts.html' %}
+
+<div class="container" style="margin-bottom :180px">
+    <div class="booking">
+        <div class="profile">
+            <div class="main-body p-0">
+
+                <div class="size" style="overflow: hidden;">
+                    <div class="row" >
+                        <div class="col text-center" style="background-color: #fbc252; ">
+                            <h3>My Wallet</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col text-center mt-2 mb-2" style="">
+                            <Span style="font-size: 60px;">
+                                {% if total > 0 %}
+                                <span class="text-success">+ {{total}}</span>
+                                {% elif total < 0 %}
+                                <span class="text-danger">- {{total}}</span>
+                                {% elif total == 0 %}
+                                <span class="text-dark">{{total}}</span>
+                                {% endif %}
+                                <i class="fa-solid fa-coins text-warning"></i>
+                            </Span>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col mt-2 mb-2 text-center">
+                            <b><h4>History</b></h4>
+                        </div>
+                    </div>
+                    <hr>
+
+                    {% if details %}
+
+                    <table id="non" class="table order text-center">
+                        <thead>
+                            <tr style="background-color: #fbc252;">
+                                <th>Order No</th>
+                                <th>Service</th>
+                                <th>Customer</th>
+                                <th>Coin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for detail in details %}
+                            <tr>
+
+                                <td><a style="text-decoration: none !important; color: black;"
+                                        href="#">{{detail.order}}</a></td>
+
+                                <td><img src="{{detail.order.img.service_img.url}}" class="avatar" width="150px"
+                                        alt="{{detail.order.service}}"></td>
+
+                                <td>{{detail.order.first_name}} {{detail.order.last_name}}</td>
+
+                                {% if detail.coin > 0 %}
+                                <td class="text-success"><span class="status text-success" style="font-size: 20px; margin-bottom: 7px;"><b>+</span><span style="font-size: 25px;">{{detail.coin}}</span></b></td>
+                                {% elif detail.coin < 0 %}
+                                <td class="text-danger"><span class="status text-danger" style="font-size: 20px; margin-bottom: 7px;"><b>-</span><span style="font-size: 25px;">{{detail.coin}}</span></b></td>
+                                {% endif %}
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="row">
+                        <div class="col mt-2 mb-2 text-center">
+                            <h4>There are no History</h4>
+                        </div>
+                    </div>
+                    
+                    {% endif %}
+                </div>
+        
+            </div>
+        </div>
+    </div>
+<!-- nav bar -->
+{% include 'includes/serviceman_nav.html' %}
+</div>
+{% endblock %}

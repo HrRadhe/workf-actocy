@@ -8,7 +8,8 @@ from accounts.views import check_role_serviceman
 from django.shortcuts import get_object_or_404
 from services.models import SubService,MainService
 from serviceman.models import Serviceman
-
+from orders.models import Order
+from django.core.paginator import Paginator
 from .forms import UserForm
 
 # helper function for get vendor
@@ -86,4 +87,67 @@ def my_service(request):
             return redirect('my_service')
         
     return render(request, 'serviceman/my_service.html')
+
+@login_required(login_url='login')
+@user_passes_test(check_role_serviceman)
+def s_pending_booking(request, pk):
+    order = Order.objects.get(pk=pk)
+    context = {
+        'order': order,
+    }
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        if status == "1":
+            order.status = "Accepted"
+            order.save()
+            print(order.status)
+        elif status == "2":
+            order.status = "Cancelled"
+            order.save()
+        
+     
+    return render(request, 'serviceman/pending_booking.html',context)
     
+@login_required(login_url='login')
+@user_passes_test(check_role_serviceman)
+def all_booking_s(request):
+    # print(check_role_serviceman())
+    user = request.user
+    orders = Order.objects.filter(serviceman=Serviceman.objects.get(user=user), is_ordered=True).exclude(status = 'New').order_by('-updated_at')
+    # service_img = serviceimg(orders.service)
+    # print(service_img)
+    # print(orders)
+    if orders.count() > 10:
+        nav = True
+    else:
+        nav = False
+    # print(nav)
+
+    paginator = Paginator(orders,10)
+    page_no = request.GET.get('page')
+    current_page = paginator.get_page(page_no)
+    # print(current_page)
+
+    context = {
+        'orders' : current_page,
+        'nav' : nav,
+    }
+    return render(request, 'serviceman/all_booking.html',context)
+
+@login_required(login_url='login')
+@user_passes_test(check_role_serviceman)
+def order_detail_s(request, pk):
+    order = Order.objects.get(pk=pk)
+    context = {
+        'order': order,
+    }
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        if status == "1":
+            order.status = "Completed"
+            order.save()
+            print(order.status)
+        elif status == "2":
+            order.status = "Cancelled"
+            order.save()
+    return render(request, 'serviceman/order_detail.html',context)

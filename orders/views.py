@@ -1,12 +1,12 @@
 from django.shortcuts import render,HttpResponse
 from accounts.models import User,UserProfile
 from serviceman.models import Serviceman
-from services.models import SubService
+from services.models import SubService,ServicesImage
 from .models import Order
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import orderForm
 import datetime
-from .utils import generate_oder_number
+from .utils import generate_oder_number,serviceimg
 
 # Create your views here.
 @login_required(login_url='login')
@@ -31,11 +31,14 @@ def checkout(request, pk):
     }
 
     orderform = orderForm(initial=user_in)
+    services_h = []
+    for service in services.name.split(', '):
+        services_h.append(service)
 
     context ={
         'user' : login_user,
         'orderform' : orderform,
-        'services' : services.name,
+        'services' : services_h,
         'serviceman' : serviceman,
     }
     return render(request, 'orders/checkout.html',context)
@@ -64,11 +67,14 @@ def place_order(request):
 
             order.serviceman = serviceman
             order.user = request.user
+            img = ServicesImage.objects.get(pk=int(serviceimg(order.service)))
+            order.img = img
 
             order.save()
             order.order_number = generate_oder_number(order.id)
             order.is_ordered = True
             order.save()
+            
 
             context ={
                 'order' : order,

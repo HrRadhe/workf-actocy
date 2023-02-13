@@ -3,6 +3,7 @@ from accounts.models import User
 import datetime
 from serviceman.models import Serviceman
 from django.utils import timezone
+from services.models import ServicesImage
 
 # Create your models here.
 class Order(models.Model):
@@ -29,6 +30,7 @@ class Order(models.Model):
     date = models.DateField(default=datetime.date.today() + datetime.timedelta(days=1))
     status = models.CharField(max_length=15, choices=STATUS, default='New')
     is_ordered = models.BooleanField(default=False)
+    img = models.ForeignKey(ServicesImage, on_delete=models.SET_NULL ,null=True ,blank=True , default=16)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

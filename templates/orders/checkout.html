@@ -35,13 +35,21 @@
                             <h6 class="mb-0"></h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <strong style="font-size: small;">{{services}}</strong>
+                            <strong style="font-size: small;">
+                            
+                            </strong>
                         </div>
                         <div class="col-sm-3">
                             <h6 class="mb-0">Select Service</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
+                            {% for service in services %}
+                                <input type="radio" name="service" class="ps-3" value="{{service}}" onchange="load(this)">
+                                <label class="form-check-label  pe-3" for="flexCheckDefault">{{service}}</label>
+                            {% endfor %}
+                            <div hidden>
                             {{orderform.services}}
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -154,5 +162,10 @@
     </div>
     </div>
 </div>
-
+<script>
+function load(radio){
+    var input = document.getElementById('id_services');
+    input.value = radio.value;
+}
+</script>
 {% endblock %}

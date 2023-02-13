@@ -16,3 +16,10 @@ class SubService(models.Model):
 
     def __str__(self):
         return self.user.serviceman.user.phone_number
+    
+class ServicesImage(models.Model):
+    service = models.CharField(max_length=100)
+    service_img = models.ImageField(upload_to='services/img',blank=True,null=True)
+
+    def __unicode__(self):
+        return str(self.pk)

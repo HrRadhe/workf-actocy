@@ -6,8 +6,6 @@
 {% block content %}
 {% include 'includes/alerts.html' %}
 
-
-
 <div class="container" style="margin-bottom :180px">
     <div class="booking">
         <div class="profile">
@@ -19,22 +17,21 @@
                             <tr style="background-color: #fbc252;">
                                 <th>Order No</th>
                                 <th>Service</th>
-                                <th>Serviceman</th>
+                                <th>Customer</th>
                                 <th>Appointment Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        
                         {% if orders %}
                         <tbody>
                             {% for order in orders %}
                             <tr>
 
                                 <td><a style="text-decoration: none !important; color: black;"
-                                        href="{% url 'order_detail' order.pk %}">{{order}}</a></td>
+                                        href="{% url 'order_detail_s' order.pk %}">{{order}}</a></td>
                                 <td><img src="{{order.img.service_img.url}}" class="avatar" width="150px"
                                         alt="{{order.service}}"></td>
-                                <td>{{order.serviceman.user.first_name}} {{order.serviceman.user.last_name}}</td>
+                                <td>{{order.first_name}} {{order.last_name}}</td>
                                 <td>{{order.date |date:"d M Y" }}</td>
                                 {% if order.status == "Cancelled" %}
                                 <td><span class="status text-danger" style="font-size: 60px; margin-bottom: 15px;">&bull;</span>{{order.status}}</td>
@@ -43,6 +40,7 @@
                                 {% elif order.status == "Completed" %}
                                 <td><span class="status text-success" style="font-size: 60px; margin-bottom: 15px;">&bull;</span>{{order.status}}</td>
                                 {% endif %}
+
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -50,7 +48,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="5" class="text-center">
-                                    <h4>There are no order.</h4>
+                                    <h4>There are no one pending order.</h4>
                                 </td>
                             </tr>
                         </tbody>
@@ -64,11 +62,11 @@
                                 <a class="page-link" href="?page={{ orders.previous_page_number }}">Previous</a>
                             </li>
                             {% endif %}
-                            
+
                             <li class="page-item active">
-                                <a class="page-link" href="">Page {{ orders.number }} of {{ orders.paginator.num_pages }}<span class="sr-only"></span></a>
+                                <a class="page-link" href="">Page {{ orders.number }} of {{ orders.paginator.num_pages}}<span class="sr-only"></span></a>
                             </li>
-                           
+
                             {% if orders.has_next %}
                             <li class="page-item">
                                 <a class="page-link" href="?page={{ orders.next_page_number }}">Next</a>
@@ -82,8 +80,7 @@
             </div>
         </div>
     </div>
-
     <!-- nav bar -->
-    {% include 'includes/customer_nav.html' %}
+    {% include 'includes/serviceman_nav.html' %}
 </div>
 {% endblock %}

@@ -29,7 +29,7 @@
 
                                 <td><a style="text-decoration: none !important; color: black;"
                                         href="{% url 'pending_order' order.pk %}">{{order}}</a></td>
-                                <td><img src="{% static 'img/farming vehical.png' %}" class="avatar" width="150px"
+                                <td><img src="{{order.img.service_img.url}}" class="avatar" width="150px"
                                         alt="{{order.service}}"></td>
                                 <td>{{order.serviceman.user.first_name}} {{order.serviceman.user.last_name}}</td>
                                 <td>{{order.date |date:"d M Y" }}</td>

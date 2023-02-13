@@ -12,15 +12,18 @@ from orders.models import Order
 from django.core.paginator import Paginator
 from django.core.exceptions import PermissionDenied
 from django.utils.datastructures import MultiValueDictKeyError
+from serviceman.models import Serviceman
+from django.utils import timezone
 
 def check_role_user(user):
-    if user.role == 2:
+    if user.role == '2':
         return True
     else:
         return PermissionDenied
 
 def check_role_serviceman(user):
-    if user.role == 1:
+    print(user.role)
+    if user.role == '1':
         return True
     else:
         return PermissionDenied
@@ -166,7 +169,31 @@ def customerDashboard(request):
 @login_required(login_url='login')
 @user_passes_test(check_role_serviceman)  
 def servicemanDashboard(request):
-    return render(request , 'serviceman/s_booking.html')
+    serviceman = Serviceman.objects.get(user=request.user)
+    orders = Order.objects.filter(serviceman=serviceman, status = 'New')
+    for order in orders:
+        # print(order)
+        if order.status == "New" and order.date < timezone.now().date():
+            order.status = "Cancelled"
+            print(order)
+            order.save()
+    final_orders = Order.objects.filter(serviceman=serviceman, is_ordered=True, status = 'New').order_by('-created_at')
+    if final_orders.count() > 10:
+        nav = True
+    else:
+        nav = False
+    # print(nav)
+    
+
+    paginator = Paginator(final_orders,10)
+    page_no = request.GET.get('page')
+    current_page = paginator.get_page(page_no)
+
+    context = {
+        'orders' : current_page,
+        'nav' : nav,
+    }
+    return render(request , 'serviceman/s_booking.html',context)
 
 
 def forgotpassword(request):

@@ -9,6 +9,8 @@ from orders.models import Order
 from serviceman.models import Serviceman
 from django.core.paginator import Paginator
 from django.http import JsonResponse
+from orders.utils import serviceimg
+from services.models import ServicesImage
 
 
 # Create your views here.
@@ -43,6 +45,7 @@ def c_editprofile(request):
 @login_required(login_url="login")
 def pending_order(request, pk):
     order = Order.objects.get(pk=pk)
+    
     context = {
         'order' : order,
     }
@@ -52,6 +55,8 @@ def pending_order(request, pk):
 def all_booking(request):
     user = request.user
     orders = Order.objects.filter(user=user, is_ordered=True).exclude(status = 'New').order_by('-updated_at')
+    # service_img = serviceimg(orders.service)
+    # print(service_img)
     # print(orders)
     if orders.count() > 10:
         nav = True
