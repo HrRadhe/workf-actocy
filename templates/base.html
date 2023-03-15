@@ -21,6 +21,10 @@
 <!-- NAVBAR load -->
 {% include 'includes/navbar.html' %}
 
+<div id="loader">
+  <img src="{% static 'img/mini logo.png' %}" alt="Loading...">
+</div>
+
 <!-- main context -->
 {% block content %}
 
@@ -28,3 +32,14 @@
 
 <!-- footer -->
 {% include 'includes/footer.html' %}
+
+<script>
+window.addEventListener('load', function() {
+  var loader = document.getElementById('loader');
+  loader.style.display = 'none';
+});
+window.addEventListener("beforeunload", function() {
+  var loader = document.getElementById("page-loader");
+  loader.style.display = "block";
+});
+</script>

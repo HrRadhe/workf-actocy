@@ -14,6 +14,7 @@ from django.core.exceptions import PermissionDenied
 from django.utils.datastructures import MultiValueDictKeyError
 from serviceman.models import Serviceman
 from django.utils import timezone
+import http.client
 
 def check_role_user(user):
     if user.role == '2':
@@ -125,6 +126,23 @@ def login(request):
             messages.success(request, 'Login successful')
             # print(check_role_user(user))
             # print(check_role_serviceman(user))
+
+            # # SMS API
+            # phone_number0 = '91'+phone_number
+            # username = 'worklabofqoj92023'
+            # password = 'BCz681wZ'
+            # conn = http.client.HTTPSConnection("api.easysendsms.app")
+            # payload = "username={}&password={}&to={}&from={}&text={}&type=0".format(username, password, phone_number0, "Work Factory", "Hii..,I am from Work Factory")
+            # headers = {
+            # 'Content-Type': 'application/x-www-form-urlencoded',
+            # 'Cookie': 'ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM'
+            # }
+            # conn.request("POST", "/bulksms", payload, headers)
+            # res = conn.getresponse()
+            # data = res.read()
+            # print(data.decode("utf-8"))
+            # print(phone_number0)
+
             return redirect('myAccount')
             
         else:
@@ -214,7 +232,7 @@ def forgotpassword(request):
             return redirect('login')
         else:
             messages.error(request, 'Account does not exist')
-            return redirect('forgot_password')
+            return redirect('forgotpassword')
     return render(request , 'accounts/forgot_password.html')
 
 def reset_password_validate(request, uidb64, token):

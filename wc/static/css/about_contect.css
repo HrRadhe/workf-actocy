@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+
+  font-family: 'Montserrat', sans-serif;
+}
+body{
+  background: #f2f2f2;
+}
+ /* navigatio bar */
+ .nav-wf{
+  height: auto;
+  background: rgb(251, 194, 82) !important;
+  font-weight: bold !important;
+  z-index: 1;
+}
+
+
+.logo-wf {
+  height: 72px;
+  width: 185px;
+}
+
+.login-wf{
+  background: black !important;
+  border-radius: 5px;
+  color: white !important;
+  border: none;
+
+}
+
+.icon-wf{
+  background: black !important;
+  border: none !important;
+}
+
+
+
+❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+
+
+/* contacnt us                              cfghdtytrujfghrtjuyftdcbvg */
+
+
+
+
+.container{
+   
+  padding:15px 9%;
+  padding-bottom: 100px;
+}
+
+.container .heading{
+  text-align: center;
+  padding-bottom: 15px;
+  text-shadow: 0 5px 10px rgba(0,0,0,.2);
+  font-size: 50px;
+}
+
+.container .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap:30px;   
+  
+}
+
+.container .box-1{
+height: 320px !important;
+}
+
+.container .h3-heading{
+color: #0b0b0b !important;
+
+}
+
+.container .box-container .box{
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  border-radius: 5px;
+  background: #fff;
+  text-align: center;
+  padding:30px 20px;
+}
+
+.container .box-container .box img{
+  height: 80px;
+}
+
+.container .box-container .box h3{
+  color:#444;
+  font-size: 22px;
+  padding:10px 0;
+}
+
+.container .box-container .box p{
+  color:rgb(0, 0, 0);
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: left;
+  font-weight: bolder;
+}
+
+.container .box-container .box .btn{
+  margin-top: 10px;
+  display: inline-block;
+  background:#FBC252;
+  color:#fff;
+  font-size: 17px;
+  border-radius: 5px;
+  padding: 8px 25px;
+}
+
+.container .box-container .box .btn:hover{
+  background-color: black;
+  color: white;
+}
+
+.container .box-container .box .btn:hover{
+  letter-spacing: 1px;
+}
+
+.container .box-container .box:hover{
+  box-shadow: 0 10px 15px rgba(0,0,0,.3);
+  transform: scale(1.03);
+}
+
+
+.submit{
+  color: white;
+  background-color: black;
+  border-radius: 5px ;
+  font-size: larger;
+}
+
+
+.info-box{
+
+
+font-size: 17px;
+align-items: center;
+margin-right: 76px;
+text-align: center;
+
+}
+
+
+.submit{
+  border: 2px solid navy;
+  padding: 10px;
+
+}
+
+.submit:hover{
+  color: black;
+  background-color: white;
+  font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

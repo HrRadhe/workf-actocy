@@ -101,11 +101,12 @@ def s_pending_booking(request, pk):
             order.status = "Accepted"
             order.save()
             print(order.status)
+            return redirect('all_booking_s')
         elif status == "2":
             order.status = "Cancelled"
             order.save()
+            return redirect('all_booking_s')
         
-     
     return render(request, 'serviceman/pending_booking.html',context)
     
 @login_required(login_url='login')

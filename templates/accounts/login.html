@@ -15,16 +15,21 @@
     <div class="text-center mt-4 name">
         Work Factory
     </div>
-    <form class="p-3 mt-3" action="{% url 'login' %}" method="post">
+    <form class="p-3 mt-3" action="{% url 'login' %}" method="post" onsubmit="return validateLogin()">
     {% csrf_token %}
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="text" name="phone_number" placeholder="Phone Number">
+                <input type="text" name="phone_number" id='phone_number' placeholder="Phone Number">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" id='password' placeholder="Password">
             </div>
+            <br>
+            <p id="phone_error" style="color:red"></p>
+            <p id="password_error" style="color:red"></p>
+
+
             <button class="btn mt-3">Login</button>
         </form>
         <div class="text-center fs-6">
@@ -32,5 +37,31 @@
         </div>
 
 </div>
+
+<script>
+    function validateLogin() {
+        var phone_number = document.getElementById("phone_number").value;
+        var password = document.getElementById("password").value;
+        var phone_regex = /^([0-9]){10}$/;
+
+        // Validate phone number
+        if (!phone_regex.test(phone_number)) {
+            document.getElementById("phone_error").innerHTML = "* Please enter a valid 10-digit phone number";
+            return false;
+        } else {
+            document.getElementById("phone_error").innerHTML = "";
+        }
+
+        // Validate password
+        // if (password.length < 8) {
+        //     document.getElementById("password_error").innerHTML = "* Password must be at least 8 characters long";
+        //     return false;
+        // } else {
+        //     document.getElementById("password_error").innerHTML = "";
+        // }
+
+        return true;
+    }
+</script>
 
 {% endblock %}

@@ -59,7 +59,7 @@
             {% endfor %}
             {% endif %}
 
-            <li style="color: red;">{{form.non_field_errors}}</li>
+            <li style="color: red;" id="error">{{form.non_field_errors}}</li>
         </ul>
         <!-- <div class="form-field d-flex align-items-center">
             <i class="fa-solid fa-location"></i>
@@ -79,11 +79,106 @@
             <input type="file"  id="profile_pic" placeholder="Profile Picture">
         </div> -->
 
-        <button class="btn mt-3">Register</button>
+        <button class="btn mt-3" id="submit-btn">Register</button>
         <br>
         <br>
     </form>
 
 </div>
+
+<script>
+    const form = document.querySelector('form');
+    const firstNameInput = document.getElementById('id_first_name');
+    const lastNameInput = document.getElementById('id_last_name');
+    const usernameInput = document.getElementById('id_username');
+    const emailInput = document.getElementById('id_email');
+    const phoneNumberInput = document.getElementById('id_phone_number');
+    const passwordInput = document.getElementById('id_password');
+    const confirmPasswordInput = document.getElementById('id_confirm_password');
+    const errorElement = document.getElementById('error');
+    const submitBtn = document.getElementById('submit-btn');
+
+    submitBtn.addEventListener('click',validateForm);
+
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form submission
+        errorElement.innerHTML = ''; // Clear any previous error messages
+
+        let isValid = true;
+
+        // Check if first name is empty
+        if (firstNameInput.value.trim() === '') {
+            errorElement.innerHTML += '<li>* Please enter your first name</li>';
+            isValid = false;
+        }
+
+        // Check if last name is empty
+        if (lastNameInput.value.trim() === '') {
+            errorElement.innerHTML += '<li>* Please enter your last name</li>';
+            isValid = false;
+        }
+
+        // Check if username is empty
+        if (usernameInput.value.trim() === '') {
+            errorElement.innerHTML += '<li>* Please enter a username</li>';
+            isValid = false;
+        }
+
+        // Check if email is empty and is a valid email address
+        if (emailInput.value.trim() === '') {
+            errorElement.innerHTML += '<li>* Please enter your email address</li>';
+            isValid = false;
+        } else if (!isValidEmail(emailInput.value.trim())) {
+            errorElement.innerHTML += '<li>* Please enter a valid email address</li>';
+            isValid = false;
+        }
+
+        // Check if phone number is empty and is a valid phone number
+        if (phoneNumberInput.value.trim() === '') {
+            errorElement.innerHTML += '<li>* Please enter your phone number</li>';
+            isValid = false;
+        } else if (!isValidPhoneNumber(phoneNumberInput.value.trim())) {
+            errorElement.innerHTML += '<li>* Please enter a valid phone number</li>';
+            isValid = false;
+        }
+
+        // Check if password is empty and has at least 8 characters
+        if (passwordInput.value.trim() === '') {
+            errorElement.innerHTML += '<li>* Please enter a password</li>';
+            isValid = false;
+        } else if (passwordInput.value.trim().length < 8) {
+            errorElement.innerHTML += '<li>* Password must be at least 8 characters long</li>';
+            isValid = false;
+        }
+
+        // Check if confirm password matches password
+        if (confirmPasswordInput.value.trim() === '') {
+            errorElement.innerHTML += '<li>* Please confirm your password</li>';
+            isValid = false;
+        } else if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
+            errorElement.innerHTML += '<li>* Passwords do not match</li>';
+            isValid = false;
+        }
+
+        if (isValid) {
+            form.submit(); // Submit the form if all inputs are valid
+        }
+    }
+
+    function isValidEmail(email) {
+        // Regular expression for email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function isValidPhoneNumber(phoneNumber) {
+        // Regular expression for phone number validation
+        const phoneNumberRegex = /^\d{10}$/;
+        return phoneNumberRegex.test(phoneNumber);
+    }
+
+    form.addEventListener('submit', validateForm);
+</script>
+
 
 {% endblock %}

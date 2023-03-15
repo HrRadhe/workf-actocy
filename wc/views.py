@@ -8,7 +8,7 @@ from django.db.models import Q
 from reviews.models import Review
 
 def home(request):
-    reviews = Review.objects.filter().order_by('-updated_at')[:3]
+    reviews = Review.objects.all().order_by('-updated_at')[:3]
     context = {
         'reviews' : reviews,
     }
@@ -21,9 +21,15 @@ def register(request):
     return render(request, 'select.html')
 
 def search(request):
+    
     result = request.GET.get('search')
-    if result == "" or result == " ":
+    # print("search")
+
+
+    if result == None or result == " ":
         return redirect("home")
+    
+
     else :
         fetch_mainservice = MainService.objects.filter(name__icontains=result).values_list('serviceman' , flat=True)
         fetch_subservice = SubService.objects.filter(name__icontains=result).values_list('serviceman' , flat=True) 
@@ -48,3 +54,14 @@ def search(request):
             # 'subservices': fetch_subservice,
         }
         return render(request, 'search/search.html',context)
+        # return render(request, 'search/search.html')
+    
+
+def service(request):
+    return render(request, 'services.html')
+
+def about_us(request):
+    return render(request, 'about-us.html')
+
+def contact_us(request):
+    return render(request, 'contact-us.html')

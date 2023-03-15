@@ -106,50 +106,40 @@
 
     <div class="box-container">
 
-      <div onclick="service();" class="box box-1" style="cursor: pointer;">
-        <a>
+      <a href="{% url 'services' %}" class="text-decoration-none">
+        <div class="box box-1" style="cursor: pointer;">
           <img src="{% static 'img/technician.png' %}" alt="">
           <h3 class="h3-heading">Repair and maintain</h3>
           <p>We offer comprehensive repair and maintenance services for [type of product or equipment].</p>
-        </a>
+        </div>
+      </a>
 
 
-      </div>
-
-      <div onclick="service();" class="box box-1" style="cursor: pointer;">
-        <a>
+      <a href="{% url 'services' %}" class="text-decoration-none">
+        <div class="box box-1" style="cursor: pointer;">
           <img src="{% static 'img/home renovation.png' %}" alt="">
           <h3 class="h3-heading">Home renovation</h3>
           <p>We specialize in providing top-quality home renovation services to homeowners.</p>
-        </a>
+        </div>
+      </a>
 
 
-      </div>
-
-
-
-      <div onclick="service();" class="box box-1" style="cursor: pointer;">
-        <a>
+      <a href="{% url 'services' %}" class="text-decoration-none">
+        <div class="box box-1" style="cursor: pointer;">
           <img src="{% static 'img/driver.png' %}" alt="">
           <h3 class="h3-heading">Driver</h3>
           <p>We offer reliable and professional driver services for a variety of needs.</p>
-        </a>
+        </div>
+      </a>
 
 
-      </div>
-
-
-
-
-      <div onclick="service();" class="box box-1" style="cursor: pointer;">
-        <a>
+      <a href="{% url 'services' %}" class="text-decoration-none">
+        <div class="box box-1" style="cursor: pointer;">
           <img src="{% static 'img/garden.png' %}" alt="">
           <h3 class="h3-heading">Garden</h3>
           <p>We are dedicated to helping our clients create and maintain beautiful, healthy gardens.</p>
-        </a>
-
-
-      </div>
+        </div>
+      </a>
 
     </div>
   </div>
@@ -257,13 +247,13 @@
       {% for review in reviews%}
       <div class="review">
         <div class="head-review">
-          {% if user.userprofile.profile_picture %}
-          <img src="{{user.userprofile.profile_picture.url}}" alt="User Photo" class="user" width="250px">
+          {% if review.user.userprofile.profile_picture %}
+          <img src="{{review.user.userprofile.profile_picture.url}}" alt="User Photo" class="user" width="250px">
           {% else %}
           <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Photo" class="user" width="250px">
           {% endif %}
-          <!-- <img class="user" src="{% static 'img/men.jpg'%}" > -->
         </div>
+
         <div class="body-review">
           <div class="name-review">{{review.user.full_name}}</div>
           <div class="place-review">{{review.user.userprofile.city}}</div>

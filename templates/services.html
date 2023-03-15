@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<p class="text-center mt-4 font-weight-bold" style="color: black; font-size: xx-large;">SERVICES</p>
+
+<br>
+
+<h4 class="text-center">Driver</h4>
+<hr class="hr-services mb-1">
+<div class="container pe-0 ps-0 mb-1 pb-5" style=" padding-top: 13px; margin-left: auto;">
+    <div class="box-container">
+
+        <a href="{% url 'search' %}?search=Car%20Driver" class="text-decoration-none" >
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/car driver.png' %}" alt="">
+                <h3 class="h3-heading">Car Driver</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Heavy%20Vehicle%20Driver" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/heavy driver.png' %}" alt="">
+                <h3 class="h3-heading">Heavy Vehicle Drive</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Farming%20Vehicle%20Driver" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/farming vehical.png' %}" alt="">
+                <h3 class="h3-heading">Farming Vehicle Driver</h3>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<h4 class="text-center">Repair and Maintain</h4>
+<hr class="hr-services mb-1">
+<div class="container pe-0 ps-0 mb-1 pb-5" style=" padding-top: 13px; margin-left: auto;">
+    <div class="box-container">
+
+        <a href="{% url 'search' %}?search=Equipments" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/equipment.png' %}" alt="">
+                <h3 class="h3-heading">Equipments</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Painter" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/painter.png' %}" alt="">
+                <h3 class="h3-heading">Painter</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Technician" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/technician.png' %}" alt="">
+                <h3 class="h3-heading">Technician</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Vehical%20Repairing" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/vrhical repairing.png' %}" alt="">
+                <h3 class="h3-heading">Vehicle Repairing</h3>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<h4 class="text-center">Garden</h4>
+<hr class="hr-services mb-1">
+<div class="container pe-0 ps-0 mb-1 pb-5" style=" padding-top: 13px; margin-left: auto;">
+    <div class="box-container">
+
+        <a href="{% url 'search' %}?search=Grass%20Cutting" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/grass cutting.png' %}" alt="">
+                <h3 class="h3-heading">Grass Cutting</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Pesticide%20Spray" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/prasitinde sprey.png' %}" alt="">
+                <h3 class="h3-heading">Pesticide Spray</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Planting" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/garden.png' %}" alt="">
+                <h3 class="h3-heading">Planting</h3>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<h4 class="text-center">Home Renovation</h4>
+<hr class="hr-services mb-1">
+<div class="container pe-0 ps-0" style=" padding-top: 7px; margin-left: auto;">
+    <div class="box-container">
+
+        <a href="{% url 'search' %}?search=Cleaning" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/cleaning.png' %}" alt="">
+                <h3 class="h3-heading">Cleaning</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Carpenter" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/carpenter.png' %}" alt="">
+                <h3 class="h3-heading">Carpenter</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Electrician" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/electrician.png' %}" alt="">
+                <h3 class="h3-heading">Electrician</h3>
+            </div>
+        </a>
+
+        <a href="{% url 'search' %}?search=Plumbing" class="text-decoration-none">
+            <div class="box box-1 box-services" style="cursor: pointer; height: 200px !important">
+                <img src="{% static 'img/plumbing.png' %}" alt="">
+                <h3 class="h3-heading">Plumbing</h3>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+
+{% endblock %}
